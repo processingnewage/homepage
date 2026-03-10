@@ -1,0 +1,38 @@
+type = "about"
+title = "About"
+
+[profile]
+research_interests = [
+  "Collaborative Perception",
+  "Digital Twin Network"
+]
+
+[[sections]]
+id = "about"
+type = "markdown"
+source = "bio.md"
+title = "About"
+
+[[sections]]
+id = "news"
+type = "markdown"
+title = "🔥News"
+source = "news.md"
+
+[[sections]]
+id = "experience"
+type = "markdown"
+title = "Experience"
+
+[[sections]]
+id = "selected_honors"
+type = "markdown"
+title = "Selected Honors"
+
+[[sections]]
+id = "featured_publications"
+type = "publications"
+title = "Selected Publications"
+filter = "selected"
+limit = 10
+
