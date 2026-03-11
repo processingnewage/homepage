@@ -113,6 +113,8 @@ This generates a static `out/` directory that can be hosted anywhere.
 
 👉 **[Read the full Deployment Guide](docs/deployment.md)** for instructions on deploying to **GitHub Pages** and **Cloudflare Pages**.
 
+👉 **Run deploy2web.py to automatically deploy the generated static pages to web**
+
 ## 📂 Project Structure
 
 ```
