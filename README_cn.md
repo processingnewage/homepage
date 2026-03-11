@@ -122,7 +122,7 @@ npm run build
 
 👉 **[点击阅读完整的部署指南](docs/deployment_cn.md)** （包含部署到 **GitHub Pages** 和 **Cloudflare Pages** 的详细教程）。
 
-👉 **运行deploy2web.py自动部署生成的静态页面到Web端。**
+👉 **运行 `deploy2web.py` 自动部署生成的静态页面到Web端。**
 
 ## 📂 项目结构概览
 
