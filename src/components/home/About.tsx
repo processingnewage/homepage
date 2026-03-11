@@ -29,13 +29,13 @@ export default function About({ content, title }: AboutProps) {
                         p: ({ children }) => <p className="mb-4 last:mb-0">{children}</p>,
                         ul: ({ children }) => <ul className="list-disc list-inside mb-4 space-y-1 ml-4">{children}</ul>,
                         ol: ({ children }) => <ol className="list-decimal list-inside mb-4 space-y-1 ml-4">{children}</ol>,
-                        li: ({ children }) => <li className="mb-1">{children}</li>,
+                        li: ({ children }) => <li className="mb-1 inline">{children}</li>,
                         a: ({ ...props }) => (
                             <a
                                 {...props}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="text-accent font-medium transition-all duration-200 rounded hover:bg-accent/10 hover:shadow-sm"
+                                className="text-accent font-medium transition-all duration-200 rounded hover:bg-accent/10 hover:shadow-sm inline-flex items-center"
                             />
                         ),
                         blockquote: ({ children }) => (
