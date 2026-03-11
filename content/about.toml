@@ -10,8 +10,8 @@ research_interests = [
 [[sections]]
 id = "about"
 type = "markdown"
-source = "bio.md"
 title = "About"
+source = "bio.md"
 
 [[sections]]
 id = "news"
@@ -23,11 +23,13 @@ source = "news.md"
 id = "experience"
 type = "markdown"
 title = "Experience"
+source = "experience.md"
 
 [[sections]]
 id = "selected_honors"
 type = "markdown"
 title = "Selected Honors"
+source = "selected_honors.md"
 
 [[sections]]
 id = "featured_publications"
@@ -35,4 +37,3 @@ type = "publications"
 title = "Selected Publications"
 filter = "selected"
 limit = 10
-
