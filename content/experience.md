@@ -1,4 +1,7 @@
 ### 🎓 Education
+- **Sep 2025 ~ Present**
+pursuing D.E. in Computer Technology, College of Computer Science and Technology / College of Software, Nanjing University of Aeronautics and Astronautics (NUAA), Nanjing, China. Supervised by [Prof. Changyan Yi](https://www.smilinnet.com/changyan).
+
 - **Sep 2022 ~ Jun 2025**
 M.E. in Computer Technology, School of Computing and Artificial Intelligence, Southwest Jiaotong University (SWJTU), Chengdu, China. Supervised by [Prof. Penglin Dai](https://itsgroups.github.io).
 
