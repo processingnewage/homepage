@@ -3,12 +3,11 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import {
-    EnvelopeIcon,
     AcademicCapIcon,
     HeartIcon,
     MapPinIcon
 } from '@heroicons/react/24/outline';
-import { MapPinIcon as MapPinSolidIcon, EnvelopeIcon as EnvelopeSolidIcon } from '@heroicons/react/24/solid';
+import { MapPinIcon as MapPinSolidIcon } from '@heroicons/react/24/solid';
 import { HeartIcon as HeartSolidIcon } from '@heroicons/react/24/solid';
 import { Github, Linkedin, Pin } from 'lucide-react';
 import type { SiteConfig } from '@/lib/config';
@@ -40,8 +39,6 @@ const [hasLiked, setHasLiked] = useState(false);
   const [showThanks, setShowThanks] = useState(false);
   const [showAddress, setShowAddress] = useState(false);
   const [isAddressPinned, setIsAddressPinned] = useState(false);
-const [showEmail, setShowEmail] = useState(false);
-  const [isEmailPinned, setIsEmailPinned] = useState(false);
   const [lastClickedTooltip, setLastClickedTooltip] = useState<'email' | 'address' | null>(null);
 
     // Check local storage for user's like status
