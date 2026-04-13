@@ -7,17 +7,17 @@ last_updated = "March 11, 2026"
 [author]
 name = "Xinyi Wang"
 title = "Researcher"
-institution = "University of XXX"
+institution = "NUAA"
+email = "xinyi.wang@nuaa.edu.cn"
 avatar = "/xinyiwang.jpg"
 
 [social]
 # Contact information (leave blank or delete to hide)
 
-email = "xinyi.wang@nuaa.edu.cn"
 location = "Nanjing, China"
 location_url = "https://maps.google.com"
 location_details = [
-  "Room 01900, the Main Building,",
+  "Room 900, the Main Building,",
   "Nanjing University of Aeronautics and Astronautics, Nanjing, China"
 ]
 google_scholar = "https://scholar.google.com/citations?user=1BZm6i8AAAAJ&hl=en"

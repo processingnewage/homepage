@@ -9,11 +9,3 @@ date = "2024-03-15"
 content = "这是我的第一篇博客文章。在这里，我将分享我的研究心得、技术教程和生活感悟。"
 tags = ["技术", "博客", "入门"]
 link = "/blog/first-post"
-
-[[items]]
-title = "协作感知技术入门"
-subtitle = "协作感知的基本概念和应用"
-date = "2024-02-28"
-content = "协作感知（Collaborative Perception）是自动驾驶和机器人领域的一个重要研究方向。本文将介绍协作感知的基本概念、核心优势、技术挑战和应用场景。"
-tags = ["协作感知", "自动驾驶", "技术"]
-link = "/blog/second-post"
