@@ -36,13 +36,13 @@ interface ProfileProps {
 export default function Profile({ author, social, features, researchInterests }: ProfileProps) {
     const messages = useMessages();
 
-    const [hasLiked, setHasLiked] = useState(false);
-    const [showThanks, setShowThanks] = useState(false);
-    const [showAddress, setShowAddress] = useState(false);
-    const [isAddressPinned, setIsAddressPinned] = useState(false);
-    const [showEmail, setShowEmail] = useState(false);
-    const [isEmailPinned, setIsEmailPinned] = useState(false);
-    const [lastClickedTooltip, setLastClickedTooltip] = useState<'email' | 'address' | null>(null);
+const [hasLiked, setHasLiked] = useState(false);
+  const [showThanks, setShowThanks] = useState(false);
+  const [showAddress, setShowAddress] = useState(false);
+  const [isAddressPinned, setIsAddressPinned] = useState(false);
+const [showEmail, setShowEmail] = useState(false);
+  const [isEmailPinned, setIsEmailPinned] = useState(false);
+  const [lastClickedTooltip, setLastClickedTooltip] = useState<'email' | 'address' | null>(null);
 
     // Check local storage for user's like status
     useEffect(() => {

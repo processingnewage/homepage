@@ -22,7 +22,7 @@ location_details = [
 ]
 google_scholar = "https://scholar.google.com/citations?user=1BZm6i8AAAAJ&hl=en"
 orcid = "https://orcid.org/my-orcid?orcid=0009-0005-2254-6375"
-github = "https://github.com"
+github = "https://github.com/processingnewage"
 # linkedin = "https://linkedin.com"
 
 [features]

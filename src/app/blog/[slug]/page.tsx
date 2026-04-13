@@ -74,10 +74,10 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  
+
   // Try to get the blog post content to extract title
   const content = getMarkdownContent(`blog/${slug}.md`);
-  
+
   if (!content) {
     return {
       title: 'Blog Post Not Found',
@@ -87,15 +87,15 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
   // Extract title from markdown content (first heading)
   // Try multiple patterns to find the title
-  const titleMatch = content.match(/^#\s+(.+)$/m) || 
+  const titleMatch = content.match(/^#\s+(.+)$/m) ||
                     content.match(/^#\s+(.+)$/);
   const extractedTitle = titleMatch ? titleMatch[1].trim() : null;
-  
+
   // Fallback to blog config if available
   const blogConfig = getPageConfig<CardPageConfig>('blog');
   const configItem = blogConfig?.items?.find(item => item.link === `/blog/${slug}`);
   const fallbackTitle = configItem?.title || `Blog - ${slug}`;
-  
+
   const title = extractedTitle || fallbackTitle;
 
   return {
