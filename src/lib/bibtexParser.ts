@@ -89,8 +89,8 @@ export function parseBibTeX(bibtexContent: string, locale?: string): Publication
       selected,
       preview,
 
-      // Store original BibTeX (excluding custom fields)
-      bibtex: reconstructBibTeX(entry, ['selected', 'preview', 'description', 'keywords', 'code']),
+      // Store original BibTeX (excluding custom fields and abstract)
+      bibtex: reconstructBibTeX(entry, ['selected', 'preview', 'description', 'keywords', 'code', 'abstract']),
     };
 
     // Clean up undefined fields
@@ -312,4 +312,4 @@ function reconstructBibTeX(entry: { entryType: string; citationKey: string; entr
   bibtex += '}';
 
   return bibtex;
-} 
+}

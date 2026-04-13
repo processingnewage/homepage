@@ -1,0 +1,31 @@
+type = "card"
+title = "Blog"
+description = "Thoughts, tutorials, and updates on my research and technical work."
+
+[[items]]
+title = "Getting Started with Collaborative Perception"
+subtitle = "A comprehensive guide"
+date = "2024-03-15"
+content = "Collaborative perception is an emerging field in autonomous driving and robotics that enables multiple agents to share perceptual information for improved environmental understanding. In this post, I'll walk through the key concepts and challenges..."
+tags = ["Collaborative Perception", "Tutorial", "Autonomous Driving"]
+
+[[items]]
+title = "Digital Twin Networks: A New Paradigm"
+subtitle = "Exploring the future of network simulation"
+date = "2024-02-28"
+content = "Digital twin technology is revolutionizing how we design, monitor, and optimize complex network systems. This article explores the fundamental principles and potential applications of digital twin networks in modern communication systems..."
+tags = ["Digital Twin", "Network", "Research"]
+
+[[items]]
+title = "Setting Up a Research Homepage with Next.js"
+subtitle = "A step-by-step tutorial"
+date = "2024-01-20"
+content = "Having a professional academic homepage is essential for researchers. In this tutorial, I'll show you how to build a modern, responsive research homepage using Next.js, TypeScript, and Tailwind CSS..."
+tags = ["Tutorial", "Next.js", "Academic"]
+
+[[items]]
+title = "Reflections on My PhD Journey"
+subtitle = "Lessons learned and advice for prospective students"
+date = "2023-12-10"
+content = "Completing a PhD is a significant milestone that comes with many challenges and rewards. Here are some reflections on my journey, including advice on choosing advisors, managing research projects, and maintaining work-life balance..."
+tags = ["PhD", "Academic Life", "Advice"]
