@@ -120,7 +120,7 @@ const [hasLiked, setHasLiked] = useState(false);
                 <h1 className="text-3xl font-serif font-bold text-primary mb-2">
                     {author.name}
                 </h1>
-                <p className="text-lg text-accent font-medium mb-1">
+                <p className="text-lg text-neutral-600 dark:text-neutral-500 font-medium mb-1">
                     {author.title}
                 </p>
                 <p className="text-neutral-600 mb-2">
@@ -129,7 +129,7 @@ const [hasLiked, setHasLiked] = useState(false);
                 {displayEmail && (
                     <a
                         href={`mailto:${displayEmail}`}
-                        className="text-sm text-neutral-600 dark:text-neutral-500 hover:text-accent transition-colors duration-200 mb-2"
+                        className="text-lg text-accent hover:text-accent/80 transition-colors duration-200 mb-2"
                     >
                         {displayEmail}
                     </a>

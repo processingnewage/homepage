@@ -16,7 +16,7 @@ function parseFrontMatter(content: string): { frontMatter: Record<string, unknow
   if (content.trim().startsWith('---')) {
     const lines = content.split('\n');
     let endIndex = -1;
-    
+
     // Find the closing ---
     for (let i = 1; i < lines.length; i++) {
       if (lines[i].trim() === '---') {
@@ -33,7 +33,7 @@ function parseFrontMatter(content: string): { frontMatter: Record<string, unknow
         if (colonIndex > 0) {
           const key = line.substring(0, colonIndex).trim();
           const value = line.substring(colonIndex + 1).trim();
-          
+
           // Parse different value types
           if (value.startsWith('[') && value.endsWith(']')) {
             // Parse array
@@ -47,7 +47,7 @@ function parseFrontMatter(content: string): { frontMatter: Record<string, unknow
           }
         }
       }
-      
+
       // Get body content (after front matter)
       body = lines.slice(endIndex + 1).join('\n');
     }
@@ -59,11 +59,11 @@ function parseFrontMatter(content: string): { frontMatter: Record<string, unknow
 export async function generateStaticParams() {
   // Get blog posts from blog.toml to generate static params
   const blogConfig = getPageConfig<CardPageConfig>('blog');
-  
+
   if (!blogConfig || !blogConfig.items) {
     return [];
   }
-  
+
   // Extract slugs from link fields (e.g., "/blog/first-post" -> "first-post")
   const slugs = blogConfig.items
     .filter(item => item.link)
@@ -71,7 +71,7 @@ export async function generateStaticParams() {
       const link = item.link as string;
       return link.replace('/blog/', '');
     });
-  
+
   return slugs.map(slug => ({ slug }));
 }
 
@@ -91,7 +91,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   // Extract title from markdown content (first heading)
   // Try multiple patterns to find the title
   const titleMatch = content.match(/^#\s+(.+)$/m) ||
-                    content.match(/^#\s+(.+)$/);
+    content.match(/^#\s+(.+)$/);
   const extractedTitle = titleMatch ? titleMatch[1].trim() : null;
 
   // Fallback to blog config if available
@@ -109,10 +109,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  
+
   // Try to get content for current locale first, then fallback
   let rawContent = getMarkdownContent(`blog/${slug}.md`);
-  
+
   if (!rawContent) {
     rawContent = getMarkdownContent(`blog/${slug}.md`);
   }
@@ -169,7 +169,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           </div>
         </div>
       )}
-      
+
       <div className="prose prose-lg prose-neutral dark:prose-invert max-w-none">
         <ReactMarkdown
           components={{
@@ -179,8 +179,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             h4: ({ children }) => <h4 className="text-xl font-serif font-bold text-primary mb-2">{children}</h4>,
             p: ({ children }) => <p className="text-base leading-relaxed text-neutral-700 dark:text-neutral-300 mb-4">{children}</p>,
             a: ({ href, children }) => (
-              <a 
-                href={href} 
+              <a
+                href={href}
                 className="text-accent hover:text-accent/80 underline underline-offset-4 decoration-accent/50 hover:decoration-accent"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -210,6 +210,23 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             li: ({ children }) => <li className="text-neutral-700 dark:text-neutral-300">{children}</li>,
             strong: ({ children }) => <strong className="font-semibold text-primary">{children}</strong>,
             em: ({ children }) => <em className="italic text-neutral-600 dark:text-neutral-400">{children}</em>,
+            img: ({ src, alt }) => {
+              // Handle relative image paths for blog posts
+              if (typeof src === 'string') {
+                let imageSrc = src;
+                if (!src.startsWith('http://') && !src.startsWith('https://')) {
+                  imageSrc = `/blog/${src}`;
+                }
+                return (
+                  <img
+                    src={imageSrc}
+                    alt={alt || ''}
+                    className="rounded-lg max-w-[80%] h-auto my-6"
+                  />
+                );
+              }
+              return null;
+            },
           }}
         >
           {body}
