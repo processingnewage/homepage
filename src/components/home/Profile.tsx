@@ -110,7 +110,7 @@ const [hasLiked, setHasLiked] = useState(false);
                     alt={author.name}
                     width={256}
                     height={256}
-                    className="w-full h-full object-cover object-[50%_20%] scale-99"
+                    className="w-full h-full object-cover object-[50%_20%]"
                     priority
                 />
             </div>

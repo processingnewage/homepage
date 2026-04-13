@@ -3,32 +3,13 @@
 import Profile from '@/components/home/Profile';
 import About from '@/components/home/About';
 import SelectedPublications from '@/components/home/SelectedPublications';
-import News, { NewsItem } from '@/components/home/News';
+import News from '@/components/home/News';
 import PublicationsList from '@/components/publications/PublicationsList';
 import TextPage from '@/components/pages/TextPage';
 import CardPage from '@/components/pages/CardPage';
 import type { SiteConfig } from '@/lib/config';
-import { Publication } from '@/types/publication';
-import { CardPageConfig, PublicationPageConfig, TextPageConfig } from '@/types/page';
+import { SectionConfig, PageData } from '@/types/page';
 import { useLocaleStore } from '@/lib/stores/localeStore';
-
-interface SectionConfig {
-  id: string;
-  type: 'markdown' | 'publications' | 'list';
-  title?: string;
-  source?: string;
-  filter?: string;
-  limit?: number;
-  content?: string;
-  publications?: Publication[];
-  items?: NewsItem[];
-}
-
-type PageData =
-  | { type: 'about'; id: string; sections: SectionConfig[] }
-  | { type: 'publication'; id: string; config: PublicationPageConfig; publications: Publication[] }
-  | { type: 'text'; id: string; config: TextPageConfig; content: string }
-  | { type: 'card'; id: string; config: CardPageConfig };
 
 export interface HomePageLocaleData {
   author: SiteConfig['author'];
