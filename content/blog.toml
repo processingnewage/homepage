@@ -3,9 +3,9 @@ title = "Blog"
 description = "Thoughts, tutorials, and updates on my research and technical work."
 
 [[items]]
-title = "第一篇博客文章"
-subtitle = "这是我的第一篇博客"
+title = "Cloud-Edge-End vs Cloud-End"
+subtitle = ""
 date = "2024-03-15"
-content = "这是我的第一篇博客文章。在这里，我将分享我的研究心得、技术教程和生活感悟。"
-tags = ["技术", "博客", "入门"]
-link = "/blog/first-post"
+content = ""
+tags = ["Edge Computing"]
+link = "/blog/Cloud-Edge-End"

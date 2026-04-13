@@ -8,11 +8,11 @@ last_updated = "March 11, 2026"
 name = "Xinyi Wang"
 title = "Researcher"
 institution = "NUAA"
-email = "xinyi.wang@nuaa.edu.cn"
 avatar = "/xinyiwang.jpg"
 
 [social]
 # Contact information (leave blank or delete to hide)
+email = "xinyi.wang@nuaa.edu.cn"
 
 location = "Nanjing, China"
 location_url = "https://maps.google.com"
