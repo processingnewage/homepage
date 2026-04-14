@@ -1,12 +1,9 @@
 import fs from 'fs';
 import path from 'path';
 import { parse } from 'smol-toml';
+import { normalizeLocale } from './utils';
 
 const DEFAULT_CONTENT_DIR = 'content';
-
-function normalizeLocale(locale: string): string {
-  return locale.trim().replace('_', '-').toLowerCase();
-}
 
 function getCandidateFilePaths(filename: string, locale?: string): string[] {
   const candidates: string[] = [];

@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { parse } from 'smol-toml';
 import type { I18nConfig } from '@/types/i18n';
+import { normalizeLocale } from './utils';
 
 export interface SiteConfig {
   site: {
@@ -50,10 +51,6 @@ export interface SiteConfig {
 }
 
 const DEFAULT_CONTENT_DIR = 'content';
-
-function normalizeLocale(locale: string): string {
-  return locale.trim().replace('_', '-').toLowerCase();
-}
 
 function readConfigFromPath(configPath: string): Partial<SiteConfig> | null {
   try {

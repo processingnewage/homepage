@@ -76,7 +76,6 @@ export default function PublicationsList({ config, publications, embedded = fals
 
             {/* Search and Filter Controls */}
             <div className="mb-8 space-y-4">
-                {/* ... (keep existing controls) ... */}
                 <div className="flex flex-col sm:flex-row gap-4">
                     <div className="relative flex-grow">
                         <MagnifyingGlassIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-neutral-400" />
@@ -233,12 +232,6 @@ export default function PublicationsList({ config, publications, embedded = fals
                                     <p className="text-sm font-medium text-neutral-800 dark:text-neutral-600 mb-3">
                                         {pub.journal || pub.conference} {pub.year} {getMonthName(pub.month)} {highlightDescription(pub.description)}
                                     </p>
-
-                                    {/* {pub.description && (
-                                        <p className="text-sm text-neutral-600 dark:text-neutral-500 mb-4 line-clamp-3">
-                                            {pub.description}
-                                        </p>
-                                    )} */}
 
                                     <div className="flex flex-wrap gap-2 mt-auto">
                                         {pub.doi && (

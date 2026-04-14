@@ -1,24 +1,21 @@
 import type { I18nConfig, I18nRuntimeConfig } from '@/types/i18n';
+import { normalizeLocale } from '@/lib/utils';
 
 const DEFAULT_LOCALE = 'en';
 
-function normalizeLocaleCode(locale: string): string {
-  return locale.trim().replace('_', '-').toLowerCase();
-}
-
 function uniqueLocales(locales: string[]): string[] {
-  return Array.from(new Set(locales.map(normalizeLocaleCode).filter(Boolean)));
+  return Array.from(new Set(locales.map(normalizeLocale).filter(Boolean)));
 }
 
 export function getRuntimeI18nConfig(i18n?: I18nConfig): I18nRuntimeConfig {
   const rawLocales = i18n?.locales && i18n.locales.length > 0 ? i18n.locales : [DEFAULT_LOCALE];
   const locales = uniqueLocales(rawLocales);
 
-  const defaultLocale = locales.includes(normalizeLocaleCode(i18n?.default_locale || ''))
-    ? normalizeLocaleCode(i18n?.default_locale || '')
+  const defaultLocale = locales.includes(normalizeLocale(i18n?.default_locale || ''))
+    ? normalizeLocale(i18n?.default_locale || '')
     : locales[0] || DEFAULT_LOCALE;
 
-  const fixedCandidate = normalizeLocaleCode(i18n?.fixed_locale || '');
+  const fixedCandidate = normalizeLocale(i18n?.fixed_locale || '');
   const fixedLocale = locales.includes(fixedCandidate) ? fixedCandidate : defaultLocale;
 
   const labels: Record<string, string> = {};
@@ -41,7 +38,7 @@ export function getRuntimeI18nConfig(i18n?: I18nConfig): I18nRuntimeConfig {
 export function matchLocale(candidate: string | null | undefined, locales: string[]): string | null {
   if (!candidate) return null;
 
-  const normalized = normalizeLocaleCode(candidate);
+  const normalized = normalizeLocale(candidate);
   if (locales.includes(normalized)) {
     return normalized;
   }
