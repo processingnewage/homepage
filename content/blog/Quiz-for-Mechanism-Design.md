@@ -52,18 +52,18 @@ $$\max_{\mathbf{x},\mathbf{p}} (u_p + \sum_{i \in \mathbf{N}} u_i) = \max_{\math
 
 * IC（Incentive Compatibility，激励相容：真实申报自己的成本 $c_i$ 和质量 $q_i$）
 
-$$u_i(c_i, q_i, c_{-i}, q_{-i}) \geq u_i(c_i', q_i', c_{-i}, q_{-i}), \quad \forall i \in \mathbf{N}$$;
+$$u_i(c_i, q_i, c_{-i}, q_{-i}) \geq u_i(c_i', q_i', c_{-i}, q_{-i}), \quad \forall i \in \mathbf{N}$$
 
 * IR（Individual Rationality，个体理性：设备参与效用非负）
   
-$$p_i - c_i x_i \geq 0, \quad \forall i \in \mathbf{N}$$;
+$$p_i - c_i x_i \geq 0, \quad \forall i \in \mathbf{N}$$
 
 * 任务数量约束（至少 $k$ 个设备被分配任务）
 
-$$\sum_{i \in \mathbf{N}} x_i \geq k$$;
+$$\sum_{i \in \mathbf{N}} x_i \geq k$$
 
 * 二元变量约束
 
-$$x_i \in \{0, 1\}, \quad \forall i \in \mathbf{N}$$.
+$$x_i \in \{0, 1\}, \quad \forall i \in \mathbf{N}$$
 
 > [Note] 和正向拍卖的关联：将申报成本和质量记为 $b_i$，真实成本和质量记为 $c_i$；就对应了正向拍卖中的竞价 $b_i$ 和真实估值 $v_i$。
