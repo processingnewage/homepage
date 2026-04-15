@@ -175,7 +175,7 @@ export default function BlogContent({ body, plainImage }: BlogContentProps) {
                                     <img 
                                         src={imageSrc} 
                                         alt={alt || ''} 
-                                        className="w-[90%] h-auto" 
+                                        className="w-[95%] h-auto mx-auto block" 
                                     />
                                 );
                             }
