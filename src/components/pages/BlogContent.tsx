@@ -9,9 +9,10 @@ import { useThemeStore } from '@/lib/stores/themeStore';
 
 interface BlogContentProps {
     body: string;
+    plainImage?: boolean;
 }
 
-export default function BlogContent({ body }: BlogContentProps) {
+export default function BlogContent({ body, plainImage }: BlogContentProps) {
     const isDark = useThemeStore((state) => state.theme) === 'dark';
     
     return (
@@ -157,13 +158,26 @@ export default function BlogContent({ body }: BlogContentProps) {
                         );
                     },
                     pre: ({ children }) => {
-                        return <>{children}</>;
+                        return (
+                            <div className="katex-display flex justify-center my-6">
+                                {children}
+                            </div>
+                        );
                     },
                     img: ({ src, alt }) => {
                         if (typeof src === 'string') {
                             let imageSrc = src;
                             if (!src.startsWith('http://') && !src.startsWith('https://')) {
                                 imageSrc = `/blog/${src}`;
+                            }
+                            if (plainImage) {
+                                return (
+                                    <img 
+                                        src={imageSrc} 
+                                        alt={alt || ''} 
+                                        className="w-[90%] h-auto" 
+                                    />
+                                );
                             }
                             return (
                                 <figure className="my-6">

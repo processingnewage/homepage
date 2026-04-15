@@ -42,6 +42,12 @@ function parseFrontMatter(content: string): { frontMatter: Record<string, unknow
           } else if (value.startsWith('"') && value.endsWith('"')) {
             // Parse quoted string
             frontMatter[key] = value.slice(1, -1);
+          } else if (value === 'true') {
+            // Parse boolean true
+            frontMatter[key] = true;
+          } else if (value === 'false') {
+            // Parse boolean false
+            frontMatter[key] = false;
           } else {
             frontMatter[key] = value;
           }
@@ -129,6 +135,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   const subtitle = frontMatter.subtitle as string | undefined;
   const date = frontMatter.date as string | undefined;
   const tags = frontMatter.tags as string[] | undefined;
+  const plainImage = frontMatter.plain_image as boolean | undefined;
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -173,7 +180,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         </div>
       )}
 
-      <BlogContent body={body} />
+      <BlogContent body={body} plainImage={plainImage} />
     </div>
   );
 }
