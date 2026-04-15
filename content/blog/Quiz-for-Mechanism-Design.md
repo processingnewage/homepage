@@ -11,17 +11,17 @@ Consider that a crowdsourcing platform needs multiple computing devices to compl
 
 **Instructions:**
 
-1. Define the set of computing devices and their corresponding types;
-2. Specify the decisions;
-3. Indicate the utility function of each computing device (assuming that it is quasi-linear);
-4. Formulate the objective function (either social welfare or revenue maximization);
-5. Write the full optimization problem (including decision variables, objective, constraints).
+* Define the set of computing devices and their corresponding types;
+* Specify the decisions;
+* Indicate the utility function of each computing device (assuming that it is quasi-linear);
+* Formulate the objective function (either social welfare or revenue maximization);
+* Write the full optimization problem (including decision variables, objective, constraints).
 
 #### 2. 众包平台任务分配与支付机制建模（Reverse Auction）
 
 在信息不对称（设备成本和质量为私有信息）条件下，设计满足激励相容与个体理性的分配与支付规则。
 
-- 平台：Cost Minimization under Quality Constraints
+- 平台：Quality-Cost Pareto Efficiency
 - 设备：Incentive-Compatible Profit Maximization
 
 设计算设备集合为 $\mathbf{N}=\{1,2,\cdots,N\}$，每个设备 $i$ 的类型为 $\theta_i=(c_i,q_i)$，其中 $c_i$ 为成本，$q_i$ 为质量。
@@ -40,22 +40,30 @@ Consider that a crowdsourcing platform needs multiple computing devices to compl
 
 **目标函数：**
 
-- 最大化平台收益 $$\max_{\mathbf{x},\mathbf{p}} u_p = \max_{\mathbf{x},\mathbf{p}} \sum_{i \in \mathbf{N}} q_i x_i - p_i$$
+- 最大化平台收益
+  
+$$\max_{\mathbf{x},\mathbf{p}} u_p = \max_{\mathbf{x},\mathbf{p}} \sum_{i \in \mathbf{N}} q_i x_i - p_i$$
 
-- 最大化社会福利 $$\max_{\mathbf{x},\mathbf{p}} (u_p + \sum_{i \in \mathbf{N}} u_i) = \max_{\mathbf{x},\mathbf{p}} \sum_{i \in \mathbf{N}} q_i x_i - c_i x_i$$
+- 最大化社会福利
+
+$$\max_{\mathbf{x},\mathbf{p}} (u_p + \sum_{i \in \mathbf{N}} u_i) = \max_{\mathbf{x},\mathbf{p}} \sum_{i \in \mathbf{N}} q_i x_i - c_i x_i$$
 
 **约束条件：**
 
-1. IC（Incentive Compatibility，激励相容）：真实申报自己的成本 $c_i$ 和质量 $q_i$
-$$u_i(c_i, q_i, c_{-i}, q_{-i}) \geq u_i(c_i', q_i', c_{-i}, q_{-i}), \quad \forall i \in \mathbf{N}$$
+* IC（Incentive Compatibility，激励相容：真实申报自己的成本 $c_i$ 和质量 $q_i$）
 
-1. IR（Individual Rationality，个体理性）：设备参与效用非负
-$$p_i - c_i x_i \geq 0, \quad \forall i \in \mathbf{N}$$
+$$u_i(c_i, q_i, c_{-i}, q_{-i}) \geq u_i(c_i', q_i', c_{-i}, q_{-i}), \quad \forall i \in \mathbf{N}$$;
 
-1. 任务数量约束：至少 $k$ 个设备被分配任务
-$$\sum_{i \in \mathbf{N}} x_i \geq k$$
+* IR（Individual Rationality，个体理性：设备参与效用非负）
+  
+$$p_i - c_i x_i \geq 0, \quad \forall i \in \mathbf{N}$$;
 
-1. 二元变量约束：
-$$x_i \in \{0, 1\}, \quad \forall i \in \mathbf{N}$$
+* 任务数量约束（至少 $k$ 个设备被分配任务）
+
+$$\sum_{i \in \mathbf{N}} x_i \geq k$$;
+
+* 二元变量约束
+
+$$x_i \in \{0, 1\}, \quad \forall i \in \mathbf{N}$$.
 
 > [Note] 和正向拍卖的关联：将申报成本和质量记为 $b_i$，真实成本和质量记为 $c_i$；就对应了正向拍卖中的竞价 $b_i$ 和真实估值 $v_i$。

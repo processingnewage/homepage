@@ -139,6 +139,10 @@ export default function RootLayout({
           href="https://jialeliu.com/fonts/georgiab.woff2"
           crossOrigin=""
         />
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"
+        />
         <script
           dangerouslySetInnerHTML={{
             __html: `

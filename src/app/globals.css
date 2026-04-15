@@ -253,3 +253,21 @@ body {
   /* Soften card borders in dark mode only */
   border-color: rgba(148, 163, 184, 0.24);
 }
+
+/* Text justification */
+.text-justify {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+/* KaTeX block formulas - centered */
+.katex-display {
+  margin: 1.5rem 0 !important;
+  text-align: center !important;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.katex-display > .katex {
+  text-align: center !important;
+}
