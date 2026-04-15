@@ -9,3 +9,11 @@ date = "2024-03-15"
 content = ""
 tags = ["Edge Computing"]
 link = "/blog/Cloud-Edge-End"
+
+[[items]]
+title = "Quiz for Mechanism Design"
+subtitle = ""
+date = "2026-01-19"
+content = ""
+tags = ["Mechanism Design"]
+link = "/blog/Quiz-for-Mechanism-Design"
