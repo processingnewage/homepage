@@ -33,19 +33,19 @@ const textStyles = {
 const linkClass = "text-accent hover:text-accent-dark transition-colors duration-200 font-medium relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-accent hover:after:w-full after:transition-all duration-300";
 
 // 代码块样式 - 紧凑简洁
-const codeBlockWrapper = "my-3 rounded-lg overflow-hidden border border-neutral-200 dark:border-neutral-700 shadow-sm";
+const codeBlockWrapper = "mx-0 my-3 rounded-lg overflow-hidden border border-neutral-200 dark:border-neutral-700 shadow-sm";
 const codeBlockHeader = "px-3 py-2 bg-neutral-100 dark:bg-neutral-800 border-b border-neutral-200 dark:border-neutral-700 text-xs font-medium text-neutral-500 dark:text-neutral-400 flex items-center gap-2";
 const codeInline = "px-1 py-0.5 mx-0.5 bg-neutral-100 dark:bg-neutral-800 text-accent-dark dark:text-accent-light rounded text-sm font-mono border border-neutral-200 dark:border-neutral-700";
 
 // 列表样式 - 整洁统一，* 和文字连接在一起，左对齐
 const listStyles = {
-  ul: "space-y-0 my-0 mx-0 py-0 ml-0 pl-0 list-disc list-outside marker:text-neutral-700 dark:marker:text-neutral-400",
-  ol: "space-y-0 my-0 mx-0 py-0 ml-0 pl-0 list-decimal list-outside marker:text-neutral-700 dark:marker:text-neutral-400",
-  li: "text-neutral-700 dark:text-neutral-300 pl-0 py-0 leading-normal",
+  ul: "space-y-1 my-1 mx-0 py-0 ml-4 pl-4 list-disc list-outside marker:text-neutral-700 dark:marker:text-neutral-400",
+  ol: "space-y-1 my-1 mx-0 py-0 ml-4 pl-4 list-decimal list-outside marker:text-neutral-700 dark:marker:text-neutral-400",
+  li: "text-neutral-700 dark:text-neutral-300 py-0 leading-normal text-justify",
 };
 
 // 引用块样式 - 紧凑简洁
-const blockquote = "border-l-2 border-accent/60 pl-2 py-0 my-0 bg-accent/5 dark:bg-accent/10 rounded-r-lg italic";
+const blockquote = "border-l-2 border-accent/60 pl-3 py-2 my-0 bg-accent/5 dark:bg-accent/10 rounded-r-lg not-italic overflow-hidden text-justify";
 const blockquoteText = "text-neutral-600 dark:text-neutral-400";
 
 // 表格样式 - 紧凑清晰
@@ -53,7 +53,7 @@ const tableWrapper = "my-3 overflow-x-auto rounded-lg border border-neutral-200 
 const table = "w-full border-collapse";
 const tableHeader = "bg-neutral-50 dark:bg-neutral-800/50";
 const tableHeaderCell = "px-3 py-2 text-left text-sm font-semibold text-primary border-b border-neutral-200 dark:border-neutral-700";
-const tableCell = "px-3 py-2 text-sm text-neutral-700 dark:text-neutral-300 border-b border-neutral-100 dark:border-neutral-800/50";
+const tableCell = "px-3 py-2 text-sm text-neutral-700 dark:text-neutral-300 border-b border-neutral-100 dark:border-neutral-800/50 text-justify";
 
 // ============ 组件定义 ============
 
@@ -163,6 +163,8 @@ export function getMarkdownComponents({ isDark, plainImage = false }: MarkdownCo
               padding: '1.25rem',
               fontSize: '0.875rem',
               lineHeight: '1.7',
+              whiteSpace: 'pre-wrap',
+              wordBreak: 'break-word',
             }}
             codeTagProps={{
               style: {
@@ -176,7 +178,7 @@ export function getMarkdownComponents({ isDark, plainImage = false }: MarkdownCo
       );
     },
     pre: ({ children, ...props }: { children?: React.ReactNode } & Record<string, unknown>) => (
-      <div className="flex justify-center my-3" {...props}>
+      <div className="flex justify-center mx-0 my-3 [&>code]:whitespace-pre-wrap" {...props}>
         {children}
       </div>
     ),
