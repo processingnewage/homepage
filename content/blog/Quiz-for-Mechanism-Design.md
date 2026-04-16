@@ -9,11 +9,13 @@ tags: ["Mechanism Design"]
 
 Consider that a crowdsourcing platform needs multiple computing devices to complete a microtask (e.g., labeling images). Each device has a private cost per task (depending on skill/effort) and can produce output of a certain quality. The platform must assign tasks and decide payments to ensure high-quality results. Please formulate this as a mechanism design problem. You do not need to solve the mechanism or prove properties, but only model it mathematically (using notations defined by yourselves). **Instructions:**
 
-    1. Define the set of computing devices and their corresponding types;
-    2. Specify the decisions;
-    3. Indicate the utility function of each computing device (assuming that it is quasi-linear);
-    4. Formulate the objective function (either social welfare or revenue maximization);
-    5. Write the full optimization problem (including decision variables, objective, constraints).
+```
+1. Define the set of computing devices and their corresponding types;
+2. Specify the decisions;
+3. Indicate the utility function of each computing device (assuming that it is quasi-linear);
+4. Formulate the objective function (either social welfare or revenue maximization);
+5. Write the full optimization problem (including decision variables, objective, constraints).
+```
 
 #### 2. 众包平台任务分配与支付机制建模（Reverse Auction）
 
