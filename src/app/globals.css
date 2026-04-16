@@ -243,6 +243,40 @@ body {
   background: var(--neutral-500);
 }
 
+/* ========================================
+   Markdown Typography - Unified Line Height
+   ======================================== */
+
+/* Unified line height for all prose content - headings, paragraphs, lists */
+.prose p,
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6,
+.prose li,
+.prose-lg p,
+.prose-lg h1,
+.prose-lg h2,
+.prose-lg h3,
+.prose-lg h4,
+.prose-lg h5,
+.prose-lg h6,
+.prose-lg li {
+  line-height: 1.75;
+}
+
+/* Paragraph bottom margin */
+.prose p,
+.prose-lg p {
+  margin-bottom: 0.75rem;
+}
+
+/* ========================================
+   End Markdown Typography
+   ======================================== */
+
 /* Card background utility */
 .card-bg {
   background-color: #ffffff;
@@ -262,12 +296,23 @@ body {
 
 /* KaTeX block formulas - centered */
 .katex-display {
-  margin: 1.5rem 0 !important;
+  margin: 1.5rem auto !important;
   text-align: center !important;
   overflow-x: auto;
   overflow-y: hidden;
+  display: block !important;
+  max-width: 100% !important;
+  justify-content: center !important;
 }
 
 .katex-display > .katex {
+  display: block !important;
+  text-align: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.katex-display > .katex > .katex-html {
+  display: block !important;
   text-align: center !important;
 }

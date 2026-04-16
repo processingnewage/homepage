@@ -22,7 +22,7 @@ export default function About({ content, title }: AboutProps) {
             transition={{ duration: 0.6, delay: 0.2 }}
         >
             <h2 className="text-2xl font-serif font-bold text-primary mb-4">{resolvedTitle}</h2>
-            <div className="text-neutral-700 dark:text-neutral-600 leading-relaxed">
+            <div className="text-neutral-700 dark:text-neutral-600 ">
                 <ReactMarkdown
                     remarkPlugins={[remarkMath]}
                     rehypePlugins={[rehypeKatex]}
