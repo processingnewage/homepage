@@ -247,7 +247,7 @@ body {
    Markdown Typography - Unified Line Height
    ======================================== */
 
-/* Unified line height for all prose content - headings, paragraphs, lists */
+/* Unified line height for all prose content */
 .prose p,
 .prose h1,
 .prose h2,
@@ -264,7 +264,7 @@ body {
 .prose-lg h5,
 .prose-lg h6,
 .prose-lg li {
-  line-height: 1.75;
+  line-height: 1.5;
 }
 
 /* Paragraph bottom margin */

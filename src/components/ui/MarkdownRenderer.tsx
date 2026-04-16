@@ -10,7 +10,7 @@ import { cn } from '@/lib/utils';
 
 // ============ Markdown 组件样式定义 ============
 
-// 标题样式 - 简洁清晰，层次分明，带装饰元素
+// 标题样式 - 紧凑简洁
 const headingStyles = {
   h1: "text-3xl font-serif font-bold text-primary mt-10 mb-6 pb-3 border-b-2 border-neutral-200 dark:border-neutral-700",
   h2: "text-2xl font-serif font-semibold text-primary mt-8 mb-4 pb-2 border-b border-neutral-200 dark:border-neutral-700 relative pl-4 before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:w-1 before:h-8 before:bg-accent before:rounded-full",
@@ -20,40 +20,40 @@ const headingStyles = {
   h6: "text-sm font-semibold text-primary mt-4 mb-2",
 };
 
-// 段落和文本样式
+// 段落和文本样式 - 紧凑
 const textStyles = {
-  p: "text-neutral-700 dark:text-neutral-300 leading-relaxed mb-4 last:mb-0 text-justify",
+  p: "text-neutral-700 dark:text-neutral-300 leading-normal mb-2 last:mb-0 text-justify",
 
   strong: "font-semibold text-primary",
   em: "italic text-neutral-600 dark:text-neutral-400",
-  hr: "my-8 border-neutral-200 dark:border-neutral-700",
+  hr: "my-4 border-neutral-200 dark:border-neutral-700",
 };
 
 // 链接样式 - 优雅的下划线动画
 const linkClass = "text-accent hover:text-accent-dark transition-colors duration-200 font-medium relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-accent hover:after:w-full after:transition-all duration-300";
 
-// 代码块样式 - 现代简洁
-const codeBlockWrapper = "my-6 rounded-xl overflow-hidden border border-neutral-200 dark:border-neutral-700 shadow-sm";
-const codeBlockHeader = "px-4 py-2.5 bg-neutral-100 dark:bg-neutral-800 border-b border-neutral-200 dark:border-neutral-700 text-xs font-medium text-neutral-500 dark:text-neutral-400 flex items-center gap-2";
-const codeInline = "px-1.5 py-0.5 mx-0.5 bg-neutral-100 dark:bg-neutral-800 text-accent-dark dark:text-accent-light rounded text-sm font-mono border border-neutral-200 dark:border-neutral-700";
+// 代码块样式 - 紧凑简洁
+const codeBlockWrapper = "my-3 rounded-lg overflow-hidden border border-neutral-200 dark:border-neutral-700 shadow-sm";
+const codeBlockHeader = "px-3 py-2 bg-neutral-100 dark:bg-neutral-800 border-b border-neutral-200 dark:border-neutral-700 text-xs font-medium text-neutral-500 dark:text-neutral-400 flex items-center gap-2";
+const codeInline = "px-1 py-0.5 mx-0.5 bg-neutral-100 dark:bg-neutral-800 text-accent-dark dark:text-accent-light rounded text-sm font-mono border border-neutral-200 dark:border-neutral-700";
 
-// 列表样式 - 整洁统一
+// 列表样式 - 整洁统一，* 和文字连接在一起，左对齐
 const listStyles = {
-  ul: "space-y-2 my-4",
-  ol: "space-y-2 my-4 list-decimal list-inside marker:text-accent",
-  li: "text-neutral-700 dark:text-neutral-300 pl-2",
+  ul: "space-y-0 my-0 mx-0 py-0 ml-0 pl-0 list-disc list-outside marker:text-neutral-700 dark:marker:text-neutral-400",
+  ol: "space-y-0 my-0 mx-0 py-0 ml-0 pl-0 list-decimal list-outside marker:text-neutral-700 dark:marker:text-neutral-400",
+  li: "text-neutral-700 dark:text-neutral-300 pl-0 py-0 leading-normal",
 };
 
-// 引用块样式 - 简洁优雅
-const blockquote = "border-l-4 border-accent/60 pl-6 py-4 my-6 bg-accent/5 dark:bg-accent/10 rounded-r-lg italic";
+// 引用块样式 - 紧凑简洁
+const blockquote = "border-l-2 border-accent/60 pl-2 py-0 my-0 bg-accent/5 dark:bg-accent/10 rounded-r-lg italic";
 const blockquoteText = "text-neutral-600 dark:text-neutral-400";
 
-// 表格样式 - 清晰的边框和间距
-const tableWrapper = "my-6 overflow-x-auto rounded-xl border border-neutral-200 dark:border-neutral-700";
+// 表格样式 - 紧凑清晰
+const tableWrapper = "my-3 overflow-x-auto rounded-lg border border-neutral-200 dark:border-neutral-700";
 const table = "w-full border-collapse";
 const tableHeader = "bg-neutral-50 dark:bg-neutral-800/50";
-const tableHeaderCell = "px-4 py-3 text-left text-sm font-semibold text-primary border-b border-neutral-200 dark:border-neutral-700";
-const tableCell = "px-4 py-3 text-sm text-neutral-700 dark:text-neutral-300 border-b border-neutral-100 dark:border-neutral-800/50";
+const tableHeaderCell = "px-3 py-2 text-left text-sm font-semibold text-primary border-b border-neutral-200 dark:border-neutral-700";
+const tableCell = "px-3 py-2 text-sm text-neutral-700 dark:text-neutral-300 border-b border-neutral-100 dark:border-neutral-800/50";
 
 // ============ 组件定义 ============
 
@@ -176,7 +176,7 @@ export function getMarkdownComponents({ isDark, plainImage = false }: MarkdownCo
       );
     },
     pre: ({ children, ...props }: { children?: React.ReactNode } & Record<string, unknown>) => (
-      <div className="flex justify-center my-6" {...props}>
+      <div className="flex justify-center my-3" {...props}>
         {children}
       </div>
     ),
@@ -192,13 +192,13 @@ export function getMarkdownComponents({ isDark, plainImage = false }: MarkdownCo
             <img
               src={imageSrc}
               alt={alt || ''}
-              className="w-[95%] h-auto mx-auto block"
+              className="w-[95%] h-auto mx-auto block my-3"
               {...props}
             />
           );
         }
         return (
-          <figure className="my-6">
+          <figure className="my-3">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={imageSrc}
@@ -207,7 +207,7 @@ export function getMarkdownComponents({ isDark, plainImage = false }: MarkdownCo
               {...props}
             />
             {alt && (
-              <figcaption className="mt-3 text-sm text-neutral-500 dark:text-neutral-400 text-center italic">
+              <figcaption className="mt-2 text-sm text-neutral-500 dark:text-neutral-400 text-center italic">
                 {alt}
               </figcaption>
             )}
