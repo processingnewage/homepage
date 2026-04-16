@@ -45,7 +45,7 @@ const listStyles = {
 };
 
 // 引用块样式 - 紧凑简洁
-const blockquote = "border-l-2 border-accent/60 pl-3 py-2 my-0 bg-accent/5 dark:bg-accent/10 rounded-r-lg not-italic overflow-hidden text-justify";
+const blockquote = "border-l-2 border-accent/60 pl-3 pt-2 pb-0 my-0 bg-accent/5 dark:bg-accent/10 rounded-r-lg not-italic overflow-hidden text-justify";
 const blockquoteText = "text-neutral-600 dark:text-neutral-400";
 
 // 表格样式 - 紧凑清晰
