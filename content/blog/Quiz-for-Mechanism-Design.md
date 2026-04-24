@@ -50,6 +50,6 @@ Consider that a crowdsourcing platform needs multiple computing devices to compl
 
 ---
 
-> **【注】** 和正向拍卖的关联：
+>【注】和正向拍卖的关联：
 > 
 > 将申报成本和质量记为 $b_i$，真实成本和质量记为 $c_i$；就对应了正向拍卖中的竞价 $b_i$ 和真实估值 $v_i$。
