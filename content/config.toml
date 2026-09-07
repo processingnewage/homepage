@@ -36,31 +36,31 @@ enable_one_page_mode = false
 title = "About"
 type = "page"
 target = "about"
-href = "/"
+href = "/about"
 
 [[navigation]]
 title = "News"
 type = "page"
 target = "news"
-href = "/"
+href = "/news"
 
 [[navigation]]
 title = "Experience"
 type = "page"
 target = "experience"
-href = "/"
+href = "/experience"
 
 [[navigation]]
-title = "Selected Honors"
+title = "Honors"
 type = "page"
-target = "selected_honors"
-href = "/"
+target = "honors"
+href = "/honors"
 
 [[navigation]]
 title = "Selected Publications"
 type = "page"
 target = "featured_publications"
-href = "/"
+href = "/featured_publications"
 
 [[navigation]]
 title = "Publications"

@@ -27,10 +27,10 @@ title = "Experience"
 source = "experience.md"
 
 [[sections]]
-id = "selected_honors"
+id = "honors"
 type = "markdown"
-title = "Selected Honors"
-source = "selected_honors.md"
+title = "Honors"
+source = "honors.md"
 
 [[sections]]
 id = "featured_publications"
