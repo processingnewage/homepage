@@ -39,6 +39,30 @@ target = "about"
 href = "/"
 
 [[navigation]]
+title = "News"
+type = "page"
+target = "news"
+href = "/"
+
+[[navigation]]
+title = "Experience"
+type = "page"
+target = "experience"
+href = "/"
+
+[[navigation]]
+title = "Selected Honors"
+type = "page"
+target = "selected_honors"
+href = "/"
+
+[[navigation]]
+title = "Selected Publications"
+type = "page"
+target = "featured_publications"
+href = "/"
+
+[[navigation]]
 title = "Publications"
 type = "page"
 target = "publications"
