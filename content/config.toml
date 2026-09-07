@@ -34,7 +34,7 @@ enable_one_page_mode = false
 
 [[navigation]]
 title = "About"
-type = "sections"
+type = "section"
 target = "about"
 href = ""
 
