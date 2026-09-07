@@ -40,25 +40,25 @@ href = ""
 
 [[navigation]]
 title = "News"
-type = "page"
+type = ""
 target = "news"
 href = ""
 
 [[navigation]]
 title = "Experience"
-type = "page"
+type = ""
 target = "experience"
 href = ""
 
 [[navigation]]
 title = "Honors"
-type = "page"
+type = ""
 target = "honors"
 href = ""
 
 [[navigation]]
 title = "Selected Publications"
-type = "page"
+type = ""
 target = "featured_publications"
 href = ""
 
