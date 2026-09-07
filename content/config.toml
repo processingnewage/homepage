@@ -34,33 +34,33 @@ enable_one_page_mode = false
 
 [[navigation]]
 title = "About"
-type = "page"
+type = "sections"
 target = "about"
-href = "/about"
+href = ""
 
 [[navigation]]
 title = "News"
 type = "page"
 target = "news"
-href = "/news"
+href = ""
 
 [[navigation]]
 title = "Experience"
 type = "page"
 target = "experience"
-href = "/experience"
+href = ""
 
 [[navigation]]
 title = "Honors"
 type = "page"
 target = "honors"
-href = "/honors"
+href = ""
 
 [[navigation]]
 title = "Selected Publications"
 type = "page"
 target = "featured_publications"
-href = "/featured_publications"
+href = ""
 
 [[navigation]]
 title = "Publications"
