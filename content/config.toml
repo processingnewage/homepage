@@ -36,7 +36,7 @@ enable_one_page_mode = false
 title = "About"
 type = "section"
 target = "about"
-href = ""
+href = "/about"
 
 [[navigation]]
 title = "News"
