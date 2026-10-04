@@ -19,6 +19,7 @@ import { Publication } from '@/types/publication';
 import { useMessages } from '@/lib/i18n/useMessages';
 import { cn, getMonthName } from '@/lib/utils';
 import { renderDescriptionBadges, ICON_BUTTON, ICON_BUTTON_ACTIVE } from '@/lib/ui_utils';
+import { PAPER_ASSET_URL_PREFIX } from '@/lib/assets';
 
 interface SelectedPublicationsProps {
     publications: Publication[];
@@ -67,7 +68,7 @@ export default function SelectedPublications({ publications, title, enableOnePag
                             <div className="relative aspect-[4/3] w-2/5 shrink-0 self-start overflow-hidden bg-white dark:bg-neutral-800">
                                 {pub.preview ? (
                                     <Image
-                                        src={`/papers/${pub.preview}`}
+                                        src={`${PAPER_ASSET_URL_PREFIX}${pub.preview}`}
                                         alt={pub.title}
                                         fill
                                         className="object-contain"

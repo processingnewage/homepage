@@ -89,7 +89,7 @@ enable_likes = true # 是否开启点赞功能
 
 ### 论文 PDF
 
-想让某篇论文显示 **PDF** 按钮，把 PDF 文件放到 `public/papers/pdf/` 目录下，文件名与 bib 中该条目的 citation key 一致即可（例如 `@ARTICLE{dai2025multi, ...}` 对应 `public/papers/pdf/dai2025multi.pdf`）。**不需要修改 .bib 文件**，文件不存在时按钮自动隐藏。该按钮只出现在首页的论文卡片上（Publications 页面不显示）。
+想让某篇论文显示 **PDF** 按钮，把 PDF 文件放到 `content/papers/pdf/` 目录下，文件名与 bib 中该条目的 citation key 一致即可（例如 `@ARTICLE{dai2025multi, ...}` 对应 `content/papers/pdf/dai2025multi.pdf`）。**不需要修改 .bib 文件**，文件不存在时按钮自动隐藏。该按钮只出现在首页的论文卡片上（Publications 页面不显示）。
 
 如果 PDF 在外部网站，可在 bib 条目中添加 `pdfurl = {https://...}`（或 `pdf = {其它文件名.pdf}`）。
 
@@ -135,7 +135,15 @@ npm run build
 ```
 PRISM/
 ├── content/              # ✨ 用户内容区 (在此编辑 TOML, BibTeX, MD 文件)
-├── public/               # 静态资源 (图片, PDF论文等)
+│   ├── blog/
+│   │   ├── posts/        # 博客文章 (.md)
+│   │   └── images/       # 上述文章引用的配图
+│   └── papers/
+│       ├── images/       # 论文预览图
+│       └── pdf/          # 论文 PDF
+├── public/               # 仅放手动维护的静态资源 (favicon, 头像)
+├── scripts/
+│   └── sync-assets.mjs   # 构建前把 content/ 中的图片与 PDF 镜像到 public/
 ├── src/
 │   ├── app/              # Next.js App Router 核心逻辑
 │   ├── components/       # React 组件库
@@ -144,6 +152,15 @@ PRISM/
 ├── next.config.ts        # Next.js 配置文件
 └── tailwind.config.ts    # Tailwind CSS 配置文件
 ```
+
+图片与 PDF 都存放在**引用它们的内容旁边** —— 博客文章放 `content/blog/posts/`，
+配图放 `content/blog/images/`，论文预览图与 PDF 放 `content/papers/images/` 和
+`content/papers/pdf/`。由于静态导出只能提供 `public/` 中的文件，
+`scripts/sync-assets.mjs` 会在 `dev`/`build` 前自动把这些资源复制到 `public/`。
+该副本是自动生成的、已被 git 忽略，原件请始终保留在 `content/` 中。
+
+在文章中引用图片时写相对 blog 目录的路径，例如 `content/blog/posts/post.md` 里写
+`![示意图](images/diagram.png)`。`.bib` 条目的 `preview` 键同理：`preview={images/paper.jpg}`。
 
 ## 🤝 参与贡献
 

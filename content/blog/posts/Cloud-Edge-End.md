@@ -6,4 +6,4 @@ tags: ["Edge Computing"]
 plain_image: true
 ---
 
-![alt text](Cloud-Edge-End.png)
+![alt text](images/Cloud-Edge-End.png)

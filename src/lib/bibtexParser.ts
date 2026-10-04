@@ -3,18 +3,20 @@ import path from 'path';
 import { Publication, PublicationType, ResearchArea } from '@/types/publication';
 import { getConfig } from './config';
 import { getRuntimeI18nConfig } from './i18n/config';
+import { PDF_URL_PREFIX } from './assets';
 
-// Local PDF assets live here and are served from /papers/pdf/<citationKey>.pdf
-const PDF_DIR = path.join(process.cwd(), 'public', 'papers', 'pdf');
-const PDF_PUBLIC_PREFIX = '/papers/pdf/';
+// Local PDFs live next to `content/publications.bib` and are mirrored into
+// `public/` by `scripts/sync-assets.mjs` so they are reachable at build output.
+const PDF_DIR = path.join(process.cwd(), 'content', 'papers', 'pdf');
 
 /**
  * Resolve where the "PDF" button of a publication should point to.
  *
  * Priority:
  *   1. An explicit `pdfurl` / `pdf` tag in the .bib file — an absolute URL is
- *      used as-is, anything else is treated as a file name inside `public/papers/pdf/`.
- *   2. Otherwise, the file `public/papers/pdf/<citationKey>.pdf` if it exists
+ *      used as-is, anything else is treated as a file name inside
+ *      `content/papers/pdf/`.
+ *   2. Otherwise, the file `content/papers/pdf/<citationKey>.pdf` if it exists
  *      (so the button only shows up once the PDF has actually been uploaded).
  */
 function resolvePdfUrl(id: string, tag?: string): string | undefined {
@@ -24,11 +26,11 @@ function resolvePdfUrl(id: string, tag?: string): string | undefined {
     if (/^(https?:)?\/\//i.test(value)) {
       return value;
     }
-    return `${PDF_PUBLIC_PREFIX}${value.replace(/^\/+/, '')}`;
+    return `${PDF_URL_PREFIX}${value.replace(/^\/+/, '')}`;
   }
 
   if (id && fs.existsSync(path.join(PDF_DIR, `${id}.pdf`))) {
-    return `${PDF_PUBLIC_PREFIX}${id}.pdf`;
+    return `${PDF_URL_PREFIX}${id}.pdf`;
   }
 
   return undefined;
@@ -97,7 +99,7 @@ export function parseBibTeX(bibtexContent: string, locale?: string): Publication
     const id = entry.citationKey || tags.id || `pub-${Date.now()}-${index}`;
 
     // Resolve the PDF link (explicit bib tag wins, otherwise look for an
-    // uploaded file at public/papers/pdf/<id>.pdf)
+    // uploaded file at content/papers/pdf/<id>.pdf)
     const pdfUrl = resolvePdfUrl(id, tags.pdfurl || tags.pdf);
 
     // Create publication object

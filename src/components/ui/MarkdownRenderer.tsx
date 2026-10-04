@@ -6,6 +6,7 @@ import rehypeKatex from 'rehype-katex';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { oneDark, oneLight } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import { useThemeStore } from '@/lib/stores/themeStore';
+import { BLOG_ASSET_URL_PREFIX } from '@/lib/assets';
 import { cn } from '@/lib/utils';
 
 // ============ Markdown 组件样式定义 ============
@@ -186,7 +187,9 @@ export function getMarkdownComponents({ isDark, plainImage = false }: MarkdownCo
       if (typeof src === 'string') {
         let imageSrc = src;
         if (!src.startsWith('http://') && !src.startsWith('https://')) {
-          imageSrc = `/blog/${src}`;
+          // Relative image names in Markdown resolve against content/blog/images/,
+          // mirrored into public/blog/ by scripts/sync-assets.mjs.
+          imageSrc = `${BLOG_ASSET_URL_PREFIX}${src}`;
         }
         if (plainImage) {
           return (

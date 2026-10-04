@@ -81,7 +81,7 @@ Customize the "About" section, "News", and "Selected Publications" on the homepa
 ### 3. Publications (`content/publications.bib`)
 Export your publications from Google Scholar, Zotero, or Mendeley to `content/publications.bib`. PRISM automatically parses this file to generate your Publications page. Customize the display of publications by changing `selected`, `preview` and `description` keys in the bib file.
 
-To show a **PDF** button for a publication, drop the file into `public/papers/pdf/` and name it after the entry's citation key (e.g. `@ARTICLE{dai2025multi, ...}` → `public/papers/pdf/dai2025multi.pdf`). The button is added to the publication card on the homepage (Selected Publications) and only appears once the file exists; no bib edit needed. For PDFs hosted elsewhere, add `pdfurl = {https://...}` (or `pdf = {other-name.pdf}`) to the entry instead.
+To show a **PDF** button for a publication, drop the file into `content/papers/pdf/` and name it after the entry's citation key (e.g. `@ARTICLE{dai2025multi, ...}` → `content/papers/pdf/dai2025multi.pdf`). The button is added to the publication card on the homepage (Selected Publications) and only appears once the file exists; no bib edit needed. For PDFs hosted elsewhere, add `pdfurl = {https://...}` (or `pdf = {other-name.pdf}`) to the entry instead.
 
 ### 4. Adding New Pages
 To add a new page (e.g., "Projects"), create a TOML file in `content/` (e.g., `content/projects.toml`) and add it to the `navigation` list in `content/config.toml`.
@@ -122,7 +122,15 @@ This generates a static `out/` directory that can be hosted anywhere.
 ```
 PRISM/
 ├── content/              # All user-editable content (TOML, BibTeX, MD)
-├── public/               # Static assets (images, papers)
+│   ├── blog/
+│   │   ├── posts/        # Blog posts (.md)
+│   │   └── images/       # Images referenced by those posts
+│   └── papers/
+│       ├── images/       # Publication preview images
+│       └── pdf/          # Publication PDFs
+├── public/               # Hand-written static assets only (favicon, avatar)
+├── scripts/
+│   └── sync-assets.mjs   # Mirrors content/ images & PDFs into public/ before build
 ├── src/
 │   ├── app/              # Next.js App Router
 │   ├── components/       # React components
@@ -131,6 +139,18 @@ PRISM/
 ├── next.config.ts        # Next.js configuration
 └── tailwind.config.ts    # Tailwind CSS configuration
 ```
+
+Images and PDFs are stored **next to the content that uses them** — blog posts go in
+`content/blog/posts/` with their pictures in `content/blog/images/`, and a paper's
+preview image and PDF in `content/papers/images/` and `content/papers/pdf/`.
+Because a static export can only serve files from `public/`,
+`scripts/sync-assets.mjs` copies those assets into `public/` before `dev`/`build`
+and is run automatically. The copy is generated and git-ignored, so keep the
+originals in `content/`.
+
+Reference an image from a post by its path relative to the blog folder, e.g.
+`![diagram](images/diagram.png)` in `content/blog/posts/post.md`. In a `.bib`
+entry, the `preview` key works the same way: `preview={images/paper.jpg}`.
 
 ## 🤝 Contributing
 

@@ -85,7 +85,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
 
   // Try to get the blog post content to extract title
-  const content = getMarkdownContent(`blog/${slug}.md`);
+  const content = getMarkdownContent(`blog/posts/${slug}.md`);
 
   if (!content) {
     return {
@@ -117,10 +117,10 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   const { slug } = await params;
 
   // Try to get content for current locale first, then fallback
-  let rawContent = getMarkdownContent(`blog/${slug}.md`);
+  let rawContent = getMarkdownContent(`blog/posts/${slug}.md`);
 
   if (!rawContent) {
-    rawContent = getMarkdownContent(`blog/${slug}.md`);
+    rawContent = getMarkdownContent(`blog/posts/${slug}.md`);
   }
 
   if (!rawContent) {

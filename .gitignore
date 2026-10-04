@@ -24,6 +24,11 @@
 .DS_Store
 *.pem
 
+# asset mirror generated from content/ by scripts/sync-assets.mjs
+/public/blog/
+/public/papers/
+/public/.assets-manifest.json
+
 # debug
 npm-debug.log*
 yarn-debug.log*

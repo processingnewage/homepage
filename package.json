@@ -6,7 +6,10 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "sync:assets": "node scripts/sync-assets.mjs",
+    "predev": "npm run sync:assets",
+    "prebuild": "npm run sync:assets"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.4",
