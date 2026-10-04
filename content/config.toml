@@ -34,9 +34,9 @@ enable_one_page_mode = false
 
 [[navigation]]
 title = "About"
-type = "section"
+type = ""
 target = "about"
-href = "/about"
+href = ""
 
 [[navigation]]
 title = "News"
