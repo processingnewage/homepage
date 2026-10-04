@@ -56,20 +56,27 @@ export default function ScholarBadge({ src, citations, hIndex, i10Index, classNa
                 // `items-stretch` + a fixed height keeps both segments flush so the
                 // join between them stays seamless; the segments centre their own
                 // content with `items-center` (see the note above).
-                'inline-flex items-stretch align-middle h-5 overflow-hidden rounded-[4px] -translate-y-[1.5px]',
-                'border border-black/10 shadow-sm',
-                'text-[11px] leading-none font-semibold whitespace-nowrap',
+                'inline-flex items-stretch align-middle h-5 overflow-hidden rounded-full -translate-y-[1.5px]',
+                // Classic blue/white: one Google blue field with white type. The
+                // shade is Google Blue 600 rather than the lighter #4285f4, which
+                // only reaches ~3.6:1 against white and is too weak for 11px text
+                // (#1a73e8 is ~4.5:1).
+                'border border-white/15 bg-[#1a73e8]',
+                'text-[11px] leading-none font-medium whitespace-nowrap text-white shadow-sm',
                 className,
             )}
         >
-            {/* Left segment: logo + label, mirrors the shields.io `?logo=` look. */}
-            <span className="flex items-center gap-1 bg-[#555555] pr-1.5 pl-1.5 text-white dark:bg-[#3d4450]">
+            {/* Left segment: mark + label. */}
+            <span className="flex items-center gap-1 px-1.5 text-white/90">
                 <ScholarGlyph className="h-3 w-3 shrink-0" />
                 {label}
             </span>
 
-            {/* Right segment: the number. */}
-            <span className="flex items-center bg-[#0969da] px-1.5 font-bold text-white tabular-nums dark:bg-[#1a73e8]">
+            {/* Hairline divider, kept full-height by `items-stretch`. */}
+            <span aria-hidden="true" className="w-px self-stretch bg-white/25" />
+
+            {/* Right segment: the count. */}
+            <span className="flex items-center px-1.5 font-bold text-white tabular-nums">
                 {count === null ? '–' : count.toLocaleString('en-US')}
             </span>
         </span>

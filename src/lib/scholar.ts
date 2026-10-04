@@ -188,6 +188,17 @@ export function extractScholarUserId(profileUrl?: string): string | null {
  */
 function requestProfile(url: string, timeoutMs: number): Promise<string | null> {
     return new Promise((resolve) => {
+        // Destroying a timed-out request also emits an `error` event, so the
+        // promise is settled exactly once and only the first reason is reported.
+        let settled = false;
+
+        const finish = (value: string | null, reason?: string) => {
+            if (settled) return;
+            settled = true;
+            if (reason) console.warn(`[scholar] ${reason}`);
+            resolve(value);
+        };
+
         const request = https.get(
             url,
             {
@@ -204,41 +215,35 @@ function requestProfile(url: string, timeoutMs: number): Promise<string | null> 
             (response) => {
                 const { statusCode, headers } = response;
 
-                // Scholar may redirect (e.g. to a consent page); follow it.
+                // Scholar may redirect (e.g. to a consent page); follow it. The
+                // outer promise stays open, so `settled` is deliberately untouched.
                 if (statusCode && statusCode >= 300 && statusCode < 400 && headers.location) {
                     response.resume();
-                    requestProfile(new URL(headers.location, url).toString(), timeoutMs).then(resolve);
+                    requestProfile(new URL(headers.location, url).toString(), timeoutMs)
+                        .then((body) => finish(body));
                     return;
                 }
 
                 if (statusCode !== 200) {
                     response.resume();
-                    console.warn(`[scholar] profile request returned HTTP ${statusCode}`);
-                    resolve(null);
+                    finish(null, `profile request returned HTTP ${statusCode}`);
                     return;
                 }
 
                 let body = '';
                 response.setEncoding('utf8');
                 response.on('data', (chunk: string) => { body += chunk; });
-                response.on('end', () => resolve(body));
-                response.on('error', (error) => {
-                    console.warn('[scholar] profile response failed:', error.message);
-                    resolve(null);
-                });
+                response.on('end', () => finish(body));
+                response.on('error', (error) => finish(null, `profile response failed: ${error.message}`));
             },
         );
 
         request.on('timeout', () => {
             request.destroy();
-            console.warn(`[scholar] profile request timed out after ${timeoutMs}ms`);
-            resolve(null);
+            finish(null, `profile request timed out after ${timeoutMs}ms`);
         });
 
-        request.on('error', (error) => {
-            console.warn('[scholar] profile request failed:', error.message);
-            resolve(null);
-        });
+        request.on('error', (error) => finish(null, `profile request failed: ${error.message}`));
     });
 }
 

@@ -78,6 +78,33 @@ enable_likes = true
 ### 2. Homepage (`content/about.toml`)
 Customize the "About" section, "News", and "Selected Publications" on the homepage.
 
+#### Google Scholar citation badge
+If your bio contains a shields.io citation badge, PRISM replaces it with a real badge whose count is **fetched from Google Scholar automatically on every build**:
+
+```markdown
+[![Citations](https://img.shields.io/badge/Citations-10-blue?logo=google-scholar)](https://scholar.google.com/citations?user=YOUR_ID)
+```
+
+You only set the `google_scholar` URL in `content/config.toml` — the number in the badge is filled in for you, so you never edit it by hand again. The badge is vertically centred against the surrounding text.
+
+Because the site is statically exported, the lookup happens while `next build` runs. Results are cached in `.cache/scholar.json` for 12 hours to avoid hammering Scholar (and to survive rate limits). When Scholar cannot be reached, PRISM falls back to the last known value, then to the number written in the badge URL — so the badge always renders a number and a build never fails because of it.
+
+If you prefer a fixed value (or your build machine is blocked by Scholar), pin it in `content/config.toml`:
+
+```toml
+[social]
+google_scholar = "https://scholar.google.com/citations?user=YOUR_ID&hl=en"
+google_scholar_citations = 10   # overrides the automatic lookup
+```
+
+Optional environment variables:
+
+| Variable | Default | Purpose |
+| --- | --- | --- |
+| `SCHOLAR_CITATIONS` | — | Force a count and skip the lookup entirely. |
+| `SCHOLAR_CACHE_TTL_MS` | `43200000` (12h) | How long a cached count stays fresh. |
+| `SCHOLAR_FETCH_TIMEOUT_MS` | `10000` | Timeout for the profile request. |
+
 ### 3. Publications (`content/publications.bib`)
 Export your publications from Google Scholar, Zotero, or Mendeley to `content/publications.bib`. PRISM automatically parses this file to generate your Publications page. Customize the display of publications by changing `selected`, `preview` and `description` keys in the bib file.
 

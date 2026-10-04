@@ -82,6 +82,33 @@ enable_likes = true # 是否开启点赞功能
 
 自定义首页的“关于我 (About)”、“最新动态 (News)”以及“精选论文 (Selected Publications)”板块。
 
+#### Google Scholar 引用徽章
+如果你的简介里有 shields.io 引用徽章，PRISM 会把它替换成真正的徽章组件，**每次构建时自动从 Google Scholar 抓取并更新引用数**：
+
+```markdown
+[![Citations](https://img.shields.io/badge/Citations-10-blue?logo=google-scholar)](https://scholar.google.com/citations?user=YOUR_ID)
+```
+
+你只需要在 `content/config.toml` 里配置 `google_scholar` 链接，徽章上的数字会自动填充，以后**再也不用手动修改引用数**。徽章整体与周围文字上下居中对齐。
+
+由于本站是静态导出，抓取发生在 `next build` 期间。结果会缓存在 `.cache/scholar.json`（默认 12 小时），既避免频繁请求 Scholar，也能应对它的限流。当 Scholar 无法访问时，PRISM 会依次回退到上一次成功获取的数值、徽章链接里手写的数字——因此徽章永远有数字显示，也不会因为 Scholar 的问题导致构建失败。
+
+如果你想固定数值（或构建机器被 Scholar 拦截），可以在 `content/config.toml` 里指定：
+
+```toml
+[social]
+google_scholar = "https://scholar.google.com/citations?user=YOUR_ID&hl=en"
+google_scholar_citations = 10   # 覆盖自动抓取
+```
+
+可选的环境变量：
+
+| 变量 | 默认值 | 说明 |
+| --- | --- | --- |
+| `SCHOLAR_CITATIONS` | — | 强制指定引用数，完全跳过抓取。 |
+| `SCHOLAR_CACHE_TTL_MS` | `43200000`（12 小时） | 缓存有效期。 |
+| `SCHOLAR_FETCH_TIMEOUT_MS` | `10000` | 请求超时时间。 |
+
 ### 3. 论文列表 (`content/publications.bib`)
 
 直接从 Google Scholar、Zotero 或 Mendeley 导出你的论文列表到 `content/publications.bib`。PRISM 会自动解析并生成精美的论文页面。

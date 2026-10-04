@@ -1,6 +1,12 @@
 name: Deploy PRISM to GitHub Pages
 
 on:
+  # Rebuild once a day so the Google Scholar citation badge keeps itself up to
+  # date without anyone pushing a commit. Delete this block if you prefer to
+  # deploy strictly on demand.
+  schedule:
+    # 03:17 UTC daily; an off-peak minute avoids the top-of-hour build rush.
+    - cron: '17 3 * * *'
   # Push triggers are disabled by default for template users.
   # Uncomment the lines below to enable automatic deployment on push.
   # push:
