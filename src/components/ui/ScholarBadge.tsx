@@ -57,26 +57,27 @@ export default function ScholarBadge({ src, citations, hIndex, i10Index, classNa
                 // join between them stays seamless; the segments centre their own
                 // content with `items-center` (see the note above).
                 'inline-flex items-stretch align-middle h-5 overflow-hidden rounded-full -translate-y-[1.5px]',
-                // Classic blue/white: one Google blue field with white type. The
-                // shade is Google Blue 600 rather than the lighter #4285f4, which
-                // only reaches ~3.6:1 against white and is too weak for 11px text
-                // (#1a73e8 is ~4.5:1).
-                'border border-white/15 bg-[#1a73e8]',
-                'text-[11px] leading-none font-medium whitespace-nowrap text-white shadow-sm',
+                // Blue mark/label on a soft grey field (the neutral card tone already used
+                // elsewhere in the UI). The field is `neutral-200` rather than
+                // `neutral-100` because the page background is `#fefffe`: at
+                // `neutral-100` the pill would sit only ~1.09:1 from the page and
+                // read as pure white. The border keeps its edge defined.
+                'border border-neutral-300 dark:border-neutral-700 bg-neutral-200 dark:bg-neutral-800',
+                'text-[11px] leading-none font-medium whitespace-nowrap shadow-sm',
                 className,
             )}
         >
             {/* Left segment: mark + label. */}
-            <span className="flex items-center gap-1 px-1.5 text-white/90">
+            <span className="flex items-center gap-1 px-1.5 text-[#0b57d0] dark:text-[#8ab4f8]">
                 <ScholarGlyph className="h-3 w-3 shrink-0" />
                 {label}
             </span>
 
             {/* Hairline divider, kept full-height by `items-stretch`. */}
-            <span aria-hidden="true" className="w-px self-stretch bg-white/25" />
+            <span aria-hidden="true" className="w-px self-stretch bg-neutral-300 dark:bg-neutral-600" />
 
-            {/* Right segment: the count. */}
-            <span className="flex items-center px-1.5 font-bold text-white tabular-nums">
+            {/* Right segment: the count, a shade deeper for emphasis. */}
+            <span className="flex items-center px-1.5 font-bold text-[#0842a0] tabular-nums dark:text-[#c3d9fd]">
                 {count === null ? '–' : count.toLocaleString('en-US')}
             </span>
         </span>
