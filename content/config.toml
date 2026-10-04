@@ -6,7 +6,7 @@ last_updated = "March 11, 2026"
 
 [author]
 name = "Xinyi Wang"
-title = "Mr"
+title = "Ph.D. Student"
 institution = "None"
 avatar = "/xinyiwang.jpg"
 
@@ -36,31 +36,7 @@ enable_one_page_mode = false
 title = "About"
 type = ""
 target = "about"
-href = ""
-
-[[navigation]]
-title = "News"
-type = ""
-target = "news"
-href = ""
-
-[[navigation]]
-title = "Experience"
-type = ""
-target = "experience"
-href = ""
-
-[[navigation]]
-title = "Honors"
-type = ""
-target = "honors"
-href = ""
-
-[[navigation]]
-title = "Selected Publications"
-type = ""
-target = "featured_publications"
-href = ""
+href = "/"
 
 [[navigation]]
 title = "Publications"

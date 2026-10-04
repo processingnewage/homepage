@@ -1,6 +1,38 @@
+import fs from 'fs';
+import path from 'path';
 import { Publication, PublicationType, ResearchArea } from '@/types/publication';
 import { getConfig } from './config';
 import { getRuntimeI18nConfig } from './i18n/config';
+
+// Local PDF assets live here and are served from /papers/pdf/<citationKey>.pdf
+const PDF_DIR = path.join(process.cwd(), 'public', 'papers', 'pdf');
+const PDF_PUBLIC_PREFIX = '/papers/pdf/';
+
+/**
+ * Resolve where the "PDF" button of a publication should point to.
+ *
+ * Priority:
+ *   1. An explicit `pdfurl` / `pdf` tag in the .bib file — an absolute URL is
+ *      used as-is, anything else is treated as a file name inside `public/papers/pdf/`.
+ *   2. Otherwise, the file `public/papers/pdf/<citationKey>.pdf` if it exists
+ *      (so the button only shows up once the PDF has actually been uploaded).
+ */
+function resolvePdfUrl(id: string, tag?: string): string | undefined {
+  const value = tag?.trim();
+
+  if (value) {
+    if (/^(https?:)?\/\//i.test(value)) {
+      return value;
+    }
+    return `${PDF_PUBLIC_PREFIX}${value.replace(/^\/+/, '')}`;
+  }
+
+  if (id && fs.existsSync(path.join(PDF_DIR, `${id}.pdf`))) {
+    return `${PDF_PUBLIC_PREFIX}${id}.pdf`;
+  }
+
+  return undefined;
+}
 
 // eslint-disable-next-line @typescript-eslint/no-require-imports
 const bibtexParse = require('bibtex-parse-js');
@@ -62,9 +94,15 @@ export function parseBibTeX(bibtexContent: string, locale?: string): Publication
     // Parse preview field (remove braces if present)
     const preview = tags.preview?.replace(/[{}]/g, '');
 
+    const id = entry.citationKey || tags.id || `pub-${Date.now()}-${index}`;
+
+    // Resolve the PDF link (explicit bib tag wins, otherwise look for an
+    // uploaded file at public/papers/pdf/<id>.pdf)
+    const pdfUrl = resolvePdfUrl(id, tags.pdfurl || tags.pdf);
+
     // Create publication object
     const publication: Publication = {
-      id: entry.citationKey || tags.id || `pub-${Date.now()}-${index}`,
+      id,
       title: cleanBibTeXString(tags.title || 'Untitled'),
       authors,
       year,
@@ -84,13 +122,14 @@ export function parseBibTeX(bibtexContent: string, locale?: string): Publication
       doi: tags.doi,
       url: tags.url,
       code: tags.code,
+      pdfUrl,
       abstract: cleanBibTeXString(tags.abstract),
       description: cleanBibTeXString(tags.description || tags.note),
       selected,
       preview,
 
       // Store original BibTeX (excluding custom fields and abstract)
-      bibtex: reconstructBibTeX(entry, ['selected', 'preview', 'description', 'keywords', 'code', 'abstract']),
+      bibtex: reconstructBibTeX(entry, ['selected', 'preview', 'description', 'keywords', 'code', 'pdf', 'pdfurl', 'abstract']),
     };
 
     // Clean up undefined fields

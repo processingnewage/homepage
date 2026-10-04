@@ -87,6 +87,12 @@ enable_likes = true # 是否开启点赞功能
 直接从 Google Scholar、Zotero 或 Mendeley 导出你的论文列表到 `content/publications.bib`。PRISM 会自动解析并生成精美的论文页面。
 *   **小贴士**：你可以在 bib 文件中通过添加 `selected`, `preview` 和 `description` 字段来自定义论文的展示效果（例如是否在首页置顶、添加封面图等）。
 
+### 论文 PDF
+
+想让某篇论文显示 **PDF** 按钮，把 PDF 文件放到 `public/papers/pdf/` 目录下，文件名与 bib 中该条目的 citation key 一致即可（例如 `@ARTICLE{dai2025multi, ...}` 对应 `public/papers/pdf/dai2025multi.pdf`）。**不需要修改 .bib 文件**，文件不存在时按钮自动隐藏。该按钮只出现在首页的论文卡片上（Publications 页面不显示）。
+
+如果 PDF 在外部网站，可在 bib 条目中添加 `pdfurl = {https://...}`（或 `pdf = {其它文件名.pdf}`）。
+
 ### 4. 添加新页面
 
 想增加一个“项目展示”页？很简单：
