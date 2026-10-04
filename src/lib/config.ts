@@ -24,10 +24,16 @@ export interface SiteConfig {
     location_url?: string;
     location_details?: string[];
     google_scholar?: string;
+    /**
+     * Manual citation count. Only used when Google Scholar cannot be reached
+     * at build time (rate limit / offline build); leave it out to let the
+     * automatic fetch in `src/lib/scholar.ts` provide the number.
+     */
+    google_scholar_citations?: number;
     orcid?: string;
     github?: string;
     linkedin?: string;
-    [key: string]: string | string[] | undefined;
+    [key: string]: string | number | string[] | undefined;
   };
   features: {
     enable_likes: boolean;

@@ -1,6 +1,7 @@
 import { getConfig } from '@/lib/config';
 import { getMarkdownContent, getBibtexContent, getTomlContent, getPageConfig } from '@/lib/content';
 import { parseBibTeX } from '@/lib/bibtexParser';
+import { getScholarStats, type ScholarStats } from '@/lib/scholar';
 import HomePageClient, { type HomePageLocaleData } from '@/components/home/HomePageClient';
 import { SectionConfig, NewsItem, PageData, BasePageConfig, PublicationPageConfig, TextPageConfig, CardPageConfig } from '@/types/page';
 import { getRuntimeI18nConfig } from '@/lib/i18n/config';
@@ -37,12 +38,19 @@ function processSections(sections: SectionConfig[], locale?: string): SectionCon
   });
 }
 
-function loadPageDataForLocale(locale: string | undefined): HomePageLocaleData {
+async function loadPageDataForLocale(locale: string | undefined): Promise<HomePageLocaleData> {
   const localeConfig = getConfig(locale);
   const enableOnePageMode = localeConfig.features.enable_one_page_mode;
 
   const aboutConfig = getPageConfig<{ profile?: { research_interests?: string[] }; sections?: SectionConfig[] }>('about', locale);
   const researchInterests = aboutConfig?.profile?.research_interests;
+
+  // Resolve the Google Scholar citation count once per build. This is a no-op
+  // (and makes no network request) unless `social.google_scholar` is set.
+  const scholarStats: ScholarStats | null = await getScholarStats({
+    profileUrl: localeConfig.social.google_scholar,
+    configuredCitations: localeConfig.social.google_scholar_citations,
+  });
 
   let pagesToShow: PageData[] = [];
 
@@ -109,11 +117,12 @@ function loadPageDataForLocale(locale: string | undefined): HomePageLocaleData {
     features: localeConfig.features,
     enableOnePageMode,
     researchInterests,
+    scholarStats,
     pagesToShow,
   };
 }
 
-export default function Home() {
+export default async function Home() {
   const baseConfig = getConfig();
   const runtimeI18n = getRuntimeI18nConfig(baseConfig.i18n);
   const targetLocales = runtimeI18n.enabled ? runtimeI18n.locales : [runtimeI18n.defaultLocale];
@@ -121,11 +130,11 @@ export default function Home() {
   const dataByLocale: Record<string, HomePageLocaleData> = {};
 
   for (const locale of targetLocales) {
-    dataByLocale[locale] = loadPageDataForLocale(locale);
+    dataByLocale[locale] = await loadPageDataForLocale(locale);
   }
 
   if (!dataByLocale[runtimeI18n.defaultLocale]) {
-    dataByLocale[runtimeI18n.defaultLocale] = loadPageDataForLocale(undefined);
+    dataByLocale[runtimeI18n.defaultLocale] = await loadPageDataForLocale(undefined);
   }
 
   return <HomePageClient dataByLocale={dataByLocale} defaultLocale={runtimeI18n.defaultLocale} />;

@@ -8,6 +8,7 @@ import PublicationsList from '@/components/publications/PublicationsList';
 import TextPage from '@/components/pages/TextPage';
 import CardPage from '@/components/pages/CardPage';
 import type { SiteConfig } from '@/lib/config';
+import type { ScholarStats } from '@/lib/scholar';
 import { SectionConfig, PageData } from '@/types/page';
 import { useLocaleStore } from '@/lib/stores/localeStore';
 
@@ -17,6 +18,7 @@ export interface HomePageLocaleData {
   features: SiteConfig['features'];
   enableOnePageMode?: boolean;
   researchInterests?: string[];
+  scholarStats?: ScholarStats | null;
   pagesToShow: PageData[];
 }
 
@@ -57,6 +59,7 @@ export default function HomePageClient({ dataByLocale, defaultLocale }: HomePage
                         key={section.id}
                         content={section.content || ''}
                         title={section.title}
+                        scholarStats={data.scholarStats}
                       />
                     );
                   case 'publications':

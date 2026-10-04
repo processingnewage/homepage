@@ -29,6 +29,9 @@
 /public/papers/
 /public/.assets-manifest.json
 
+# build-time cache of the Google Scholar citation count (see src/lib/scholar.ts)
+/.cache/
+
 # debug
 npm-debug.log*
 yarn-debug.log*

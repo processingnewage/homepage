@@ -5,13 +5,28 @@ import ReactMarkdown from 'react-markdown';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import { useMessages } from '@/lib/i18n/useMessages';
+import { isScholarBadgeSrc } from '@/lib/shields';
+import type { ScholarStats } from '@/lib/scholar';
+import ScholarBadge from '@/components/ui/ScholarBadge';
 
 interface AboutProps {
     content: string;
     title?: string;
+    scholarStats?: ScholarStats | null;
 }
 
-export default function About({ content, title }: AboutProps) {
+/**
+ * react-markdown passes the underlying HAST `node` to every component override.
+ * Spreading it onto a DOM element produces a stray `[object Object]` attribute,
+ * so overrides strip it before spreading the rest onto real elements.
+ */
+function domProps<T extends { node?: unknown }>(props: T): Omit<T, 'node'> {
+    const rest: T = { ...props };
+    delete rest.node;
+    return rest;
+}
+
+export default function About({ content, title, scholarStats }: AboutProps) {
     const messages = useMessages();
     const resolvedTitle = title || messages.home.about;
 
@@ -34,30 +49,38 @@ export default function About({ content, title }: AboutProps) {
                         ul: ({ children }) => <ul className="list-disc list-inside mb-4 space-y-1 ml-4">{children}</ul>,
                         ol: ({ children }) => <ol className="list-decimal list-inside mb-4 space-y-1 ml-4">{children}</ol>,
                         li: ({ children }) => <li className="mb-1 inline">{children}</li>,
-                        a: ({ ...props }) => {
-                            // Check if this is a Google Scholar badge link
-                            const isGoogleScholarBadge = props.href?.includes('google-scholar');
-                            
-                            if (isGoogleScholarBadge) {
+                        a: (props) => (
+                            <a
+                                {...domProps(props)}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-accent font-medium transition-all duration-200 rounded hover:bg-accent/10 hover:shadow-sm"
+                            >
+                                {props.children}
+                            </a>
+                        ),
+                        img: (props) => {
+                            const { src, alt } = props;
+
+                            // Swap the shields.io Google Scholar badge for a real
+                            // element: the citation count comes from the build-time
+                            // Scholar fetch, and the badge can then be centred
+                            // against the surrounding text instead of sitting on
+                            // the baseline like an image does.
+                            if (typeof src === 'string' && isScholarBadgeSrc(src)) {
                                 return (
-                                    <span className="inline-block align-baseline" style={{ verticalAlign: 'middle' }}>
-                                        <a
-                                            {...props}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="text-accent font-medium transition-all duration-200 rounded hover:bg-accent/10 hover:shadow-sm inline-flex items-center"
-                                        />
-                                    </span>
+                                    <ScholarBadge
+                                        src={src}
+                                        citations={scholarStats?.citations}
+                                        hIndex={scholarStats?.hIndex}
+                                        i10Index={scholarStats?.i10Index}
+                                    />
                                 );
                             }
-                            
+
                             return (
-                                <a
-                                    {...props}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="text-accent font-medium transition-all duration-200 rounded hover:bg-accent/10 hover:shadow-sm inline-flex items-center"
-                                />
+                                // eslint-disable-next-line @next/next/no-img-element
+                                <img src={src} alt={alt || ''} className="inline-block align-middle my-0.5 max-w-full h-auto" {...domProps(props)} />
                             );
                         },
                         blockquote: ({ children }) => (
