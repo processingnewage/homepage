@@ -12,7 +12,7 @@ avatar = "/xinyiwang.jpg"
 
 [social]
 # Contact information (leave blank or delete to hide)
-email = "xinyi.wandering@outlook.com"
+email = "xy.wandering@outlook.com"
 
 location = "Chengdu, China"
 location_url = "https://maps.google.com"
@@ -21,9 +21,6 @@ location_details = [
 ]
 
 google_scholar = "https://scholar.google.com/citations?user=1BZm6i8AAAAJ&hl=en"
-# Citation count. Leave it commented out to let the site read the live count from Google Scholar on every build; set a number to pin it
-# (useful if Scholar blocks your build machine, or you just prefer a manual value).
-google_scholar_citations = 12
 
 orcid = "https://orcid.org/my-orcid?orcid=0009-0005-2254-6375"
 
