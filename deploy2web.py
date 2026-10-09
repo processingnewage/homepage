@@ -4,7 +4,7 @@ import hashlib
 import re
 from pathlib import Path
 from datetime import datetime
-n
+
 
 def get_file_hash(file_path: Path) -> str:
     """Get MD5 hash of a file (first 8 characters for brevity)."""
