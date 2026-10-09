@@ -6,27 +6,29 @@ last_updated = "March 11, 2026"
 
 [author]
 name = "Xinyi Wang"
-title = "Ph.D. Student"
-institution = "None"
+title = ""
+institution = ""
 avatar = "/xinyiwang.jpg"
 
 [social]
 # Contact information (leave blank or delete to hide)
-email = "xinyi.wang@nuaa.edu.cn"
+email = "xinyi.wandering@outlook.com"
 
-location = "Nanjing, China"
+location = "Chengdu, China"
 location_url = "https://maps.google.com"
 location_details = [
-  "Room 900, the Main Building,",
-  "Nanjing University of Aeronautics and Astronautics, Nanjing, China"
+
 ]
+
 google_scholar = "https://scholar.google.com/citations?user=1BZm6i8AAAAJ&hl=en"
-# Citation count. Leave it commented out to let the site read the live count from
-# Google Scholar on every build; set a number to pin it (useful if Scholar blocks
-# your build machine, or you just prefer a manual value).
-# google_scholar_citations = 10
+# Citation count. Leave it commented out to let the site read the live count from Google Scholar on every build; set a number to pin it
+# (useful if Scholar blocks your build machine, or you just prefer a manual value).
+google_scholar_citations = 12
+
 orcid = "https://orcid.org/my-orcid?orcid=0009-0005-2254-6375"
+
 github = "https://github.com/processingnewage"
+
 # linkedin = "https://linkedin.com"
 
 [features]

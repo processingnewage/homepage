@@ -1,6 +1,4 @@
 ### 🎓 Education
-- **Oct 2026 ~ Present**
-
 - **Sep 2022 ~ Jun 2025**
 M.E. in Computer Technology, School of Computing and Artificial Intelligence, Southwest Jiaotong University (SWJTU), Chengdu, China. Supervised by [Prof. Penglin Dai](https://itsgroups.github.io).
 
